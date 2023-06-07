@@ -18,7 +18,7 @@ myCobot.send_angles([0,0,0,0,0,0], 50) #reset pose
 myCobot.set_color(247, 0, 255)
 
 #------MAKE CONNECT TO ARENA------#
-scene = Scene(host="mqtt.arenaxr.org", namespace = "johnchoi", scene="MyCobotPi")
+scene = Scene(host="mqtt.arenaxr.org", namespace = "public", scene="arena")
 
 #------MAKE ROBOT ARM------#
 MyCobotPi_J0 = GLTF(
