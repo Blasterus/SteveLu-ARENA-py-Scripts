@@ -209,7 +209,7 @@ def j6AnglePos_handler(scene, evt, msg):
 
 def j1AngleNeg_handler(scene, evt, msg):
     if evt.type == "mousedown":
-        print("Joint 1 Positive Button pressed!")
+        print("Joint 1 Negative Button pressed!")
         
         currAngles = myCobot.get_angles()
 
@@ -220,7 +220,7 @@ def j1AngleNeg_handler(scene, evt, msg):
 
 def j2AngleNeg_handler(scene, evt, msg):
     if evt.type == "mousedown":
-        print("Joint 2 Positive Button pressed!")
+        print("Joint 2 Negative Button pressed!")
         
         currAngles = myCobot.get_angles()
 
@@ -231,7 +231,7 @@ def j2AngleNeg_handler(scene, evt, msg):
         
 def j3AngleNeg_handler(scene, evt, msg):
     if evt.type == "mousedown":
-        print("Joint 3 Positive Button pressed!")
+        print("Joint 3 Negative Button pressed!")
         
         currAngles = myCobot.get_angles()
 
@@ -242,7 +242,7 @@ def j3AngleNeg_handler(scene, evt, msg):
 
 def j4AngleNeg_handler(scene, evt, msg):
     if evt.type == "mousedown":
-        print("Joint 4 Positive Button pressed!")
+        print("Joint 4 Negative Button pressed!")
         
         currAngles = myCobot.get_angles()
 
@@ -253,7 +253,7 @@ def j4AngleNeg_handler(scene, evt, msg):
 
 def j5AngleNeg_handler(scene, evt, msg):
     if evt.type == "mousedown":
-        print("Joint 5 Positive Button pressed!")
+        print("Joint 5 Negative Button pressed!")
         
         currAngles = myCobot.get_angles()
 
@@ -264,7 +264,7 @@ def j5AngleNeg_handler(scene, evt, msg):
 
 def j6AngleNeg_handler(scene, evt, msg):
     if evt.type == "mousedown":
-        print("Joint 6 Positive Button pressed!")
+        print("Joint 6 Negative Button pressed!")
         
         currAngles = myCobot.get_angles()
 
@@ -272,6 +272,15 @@ def j6AngleNeg_handler(scene, evt, msg):
             currAngles[6] = currAngles[6]+10
 
         rotateMyCobot(currAngles)
+
+
+##### TESTING WHAT THE HELL JOINT 0 IS OKAY
+
+def j0AnglePos_handler(scene, evt, msg):
+    if evt.type == "mousedown":
+        print("Joint 0 Positive Button pressed!")
+        myCobot.send_angle(Angle.J0.value, 10, 50)
+
 
 #------MAKE BUTTONS ------#
 def makeButtonText(button, buttonID, buttonText, buttonColor = (255,255,255), buttonPos = (0, 0, 0.5), buttonRot = (0,0,0), buttonScale = (0.5, 2, 1)):
@@ -328,6 +337,22 @@ def makeSmallButton(buttonID, buttonText, buttonHandler, buttonColor = (128,128,
     scene.add_object(buttonText)
     return button
 
+def makeText(textID, text, textHandler, textColor=(0,0,0), textPos = (0,0,0), textRot = (0,0,0), textScale = (0.5, 2, 1)):
+    return Text(
+        object_id=buttonID+"_text",
+        text=buttonText,
+        align="center",
+            
+        position=buttonPos,
+        rotation=buttonRot,
+        scale=buttonScale,
+
+        color=buttonColor,
+
+        parent = button,
+        persist=True,
+    )
+
 #------ PROGRAM INIT/UPDATE ------#
 
 @scene.run_once
@@ -345,22 +370,24 @@ def programStart():
     makeButton("resetAngleButton", "Reset angle!", resetAngleButton_handler, buttonColor=(255, 55, 11), buttonPos=(0, 0.65, 0))
     makeButton("randomColorButton", "Set random color!", randomColorButton_handler, buttonColor=(0, 255, 0), buttonPos=(0, 0.75, 0),buttonTextColor=(0,0,0))
     
-    makeButton("resetAngleButton", "Joint 1", j1AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.5, 0.55, 0))
-    makeButton("resetAngleButton", "Joint 1", j1AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.5, 0.65, 0))
+    makeSmallButton("j1AnglePosButton", "Joint 1", j1AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.5, 0.55, 0))
+    makeSmallButton("j1AngleNegButton", "Joint 1", j1AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.5, 0.65, 0))
     
-    makeButton("resetAngleButton", "Joint 2", j2AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.6, 0.55, 0))
-    makeButton("resetAngleButton", "Joint 2", j2AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.6, 0.65, 0))
+    makeSmallButton("j2AnglePosButton", "Joint 2", j2AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.6, 0.55, 0))
+    makeSmallButton("j2AngleNegButton", "Joint 2", j2AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.6, 0.65, 0))
 
-    makeButton("resetAngleButton", "Joint 3", j3AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.7, 0.55, 0))
-    makeButton("resetAngleButton", "Joint 3", j3AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.7, 0.65, 0))
+    makeSmallButton("j3AnglePosButton", "Joint 3", j3AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.7, 0.55, 0))
+    makeSmallButton("j3AngleNegButton", "Joint 3", j3AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.7, 0.65, 0))
 
-    makeButton("resetAngleButton", "Joint 4", j4AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.8, 0.55, 0))
-    makeButton("resetAngleButton", "Joint 4", j4AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.8, 0.65, 0))
+    makeSmallButton("j4AnglePosButton", "Joint 4", j4AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.8, 0.55, 0))
+    makeSmallButton("j4AngleNegButton", "Joint 4", j4AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.8, 0.65, 0))
 
-    makeButton("resetAngleButton", "Joint 5", j5AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.9, 0.55, 0))
-    makeButton("resetAngleButton", "Joint 5", j5AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.9, 0.65, 0))
+    makeSmallButton("j5AnglePosButton", "Joint 5", j5AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.9, 0.55, 0))
+    makeSmallButton("j5AngleNegButton", "Joint 5", j5AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.9, 0.65, 0))
 
-    makeButton("resetAngleButton", "Joint 6", j6AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(1, 0.55, 0))
-    makeButton("resetAngleButton", "Joint 6", j6AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(1, 0.65, 0))
+    makeSmallButton("j6AnglePosButton", "Joint 6", j6AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(1, 0.55, 0))
+    makeSmallButton("j6AngleNegButton", "Joint 6", j6AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(1, 0.65, 0))
+
+    makeButton("testingJ0", "testing what the hell J0 does", j0AnglePos_handler, buttonColor=(255, 55, 11), buttonPos=(0, 0.85, 0))
     
 scene.run_tasks()
