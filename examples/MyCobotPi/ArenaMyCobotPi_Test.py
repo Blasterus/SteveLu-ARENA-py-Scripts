@@ -140,6 +140,138 @@ def resetAngleButton_handler(scene, evt, msg):
         print("Reset Button pressed!")
         rotateMyCobot([0,0,0,0,0,0])
 
+### PRECISE CONTROLS --> POSITIVE ANGLES
+
+def j1AnglePos_handler(scene, evt, msg):
+    if evt.type == "mousedown":
+        print("Joint 1 Positive Button pressed!")
+        
+        currAngles = myCobot.get_angles()
+
+        if currAngles[1]+10<80:
+            currAngles[1] = currAngles[1]+10
+
+        rotateMyCobot(currAngles)
+
+def j2AnglePos_handler(scene, evt, msg):
+    if evt.type == "mousedown":
+        print("Joint 2 Positive Button pressed!")
+        
+        currAngles = myCobot.get_angles()
+        if currAngles[2]+10<80:
+            currAngles[2] = currAngles[2]+10
+
+        rotateMyCobot(currAngles)
+        
+def j3AnglePos_handler(scene, evt, msg):
+    if evt.type == "mousedown":
+        print("Joint 3 Positive Button pressed!")
+        
+        currAngles = myCobot.get_angles()
+        if currAngles[3]+10<80:
+            currAngles[3] = currAngles[3]+10
+
+        rotateMyCobot(currAngles)
+
+def j4AnglePos_handler(scene, evt, msg):
+    if evt.type == "mousedown":
+        print("Joint 4 Positive Button pressed!")
+        
+        currAngles = myCobot.get_angles()
+        if currAngles[4]+10<80:
+            currAngles[4] = currAngles[4]+10
+
+        rotateMyCobot(currAngles)
+
+def j5AnglePos_handler(scene, evt, msg):
+    if evt.type == "mousedown":
+        print("Joint 5 Positive Button pressed!")
+        
+        currAngles = myCobot.get_angles()
+
+        if currAngles[5]+10<80:
+            currAngles[5] = currAngles[5]+10
+
+        rotateMyCobot(currAngles)
+
+def j6AnglePos_handler(scene, evt, msg):
+    if evt.type == "mousedown":
+        print("Joint 6 Positive Button pressed!")
+        
+        currAngles = myCobot.get_angles()
+
+        if currAngles[6]+10<80:
+            currAngles[6] = currAngles[6]+10
+
+        rotateMyCobot(currAngles)
+
+### PRECISE CONTROLS --> NEGATIVE ANGLES
+
+def j1AngleNeg_handler(scene, evt, msg):
+    if evt.type == "mousedown":
+        print("Joint 1 Positive Button pressed!")
+        
+        currAngles = myCobot.get_angles()
+
+        if currAngles[1]-10>-80:
+            currAngles[1] = currAngles[1]-10
+
+        rotateMyCobot(currAngles)
+
+def j2AngleNeg_handler(scene, evt, msg):
+    if evt.type == "mousedown":
+        print("Joint 2 Positive Button pressed!")
+        
+        currAngles = myCobot.get_angles()
+
+        if currAngles[2]-10>-80:
+            currAngles[2] = currAngles[2]-10
+
+        rotateMyCobot(currAngles)
+        
+def j3AnglePNeg_handler(scene, evt, msg):
+    if evt.type == "mousedown":
+        print("Joint 3 Positive Button pressed!")
+        
+        currAngles = myCobot.get_angles()
+
+        if currAngles[3]-10>-80:
+            currAngles[3] = currAngles[3]+10
+
+        rotateMyCobot(currAngles)
+
+def j4AnglePos_handler(scene, evt, msg):
+    if evt.type == "mousedown":
+        print("Joint 4 Positive Button pressed!")
+        
+        currAngles = myCobot.get_angles()
+
+        if currAngles[4]-10>-80:
+            currAngles[4] = currAngles[4]+10
+
+        rotateMyCobot(currAngles)
+
+def j5AnglePos_handler(scene, evt, msg):
+    if evt.type == "mousedown":
+        print("Joint 5 Positive Button pressed!")
+        
+        currAngles = myCobot.get_angles()
+
+        if currAngles[5]-10>-80:
+            currAngles[5] = currAngles[5]+10
+
+        rotateMyCobot(currAngles)
+
+def j6AnglePos_handler(scene, evt, msg):
+    if evt.type == "mousedown":
+        print("Joint 6 Positive Button pressed!")
+        
+        currAngles = myCobot.get_angles()
+
+        if currAngles[6]-10>-80:
+            currAngles[6] = currAngles[6]+10
+
+        rotateMyCobot(currAngles)
 
 #------MAKE BUTTONS ------#
 def makeButtonText(button, buttonID, buttonText, buttonColor = (255,255,255), buttonPos = (0, 0, 0.5), buttonRot = (0,0,0), buttonScale = (0.5, 2, 1)):
@@ -177,6 +309,25 @@ def makeButton(buttonID, buttonText, buttonHandler, buttonColor = (128,128,128),
     scene.add_object(buttonText)
     return button
 
+def makeSmallButton(buttonID, buttonText, buttonHandler, buttonColor = (128,128,128), buttonPos = (0,0,0), buttonRot = (0,0,0), buttonScale = (0.2, 0.08, 0.04), buttonTextColor = (255,255,255)):
+    button = Box(
+        object_id=buttonID,
+
+        position=buttonPos,
+        rotation=buttonRot,
+        scale=buttonScale,
+
+        color=buttonColor,
+
+        clickable=True,
+        persist=True,
+        evt_handler=buttonHandler,
+    )
+    buttonText = makeButtonText(button, buttonID, buttonText, buttonColor=buttonTextColor)
+    scene.add_object(button)
+    scene.add_object(buttonText)
+    return button
+
 #------ PROGRAM INIT/UPDATE ------#
 
 @scene.run_once
@@ -190,8 +341,13 @@ def programStart():
     scene.add_object(MyCobotPi_J5)
     scene.add_object(MyCobotPi_J6)
     # Add buttons
-    makeButton("randomAngleButton", "Goto random angle!", randomAngleButton_handler, buttonColor=(11, 55, 255), buttonPos=(0, 0.55, 0))
+    makeButton("randomAngleButton", "Go to random angle!", randomAngleButton_handler, buttonColor=(11, 55, 255), buttonPos=(0, 0.55, 0))
     makeButton("resetAngleButton", "Reset angle!", resetAngleButton_handler, buttonColor=(255, 55, 11), buttonPos=(0, 0.65, 0))
     makeButton("randomColorButton", "Set random color!", randomColorButton_handler, buttonColor=(0, 255, 0), buttonPos=(0, 0.75, 0),buttonTextColor=(0,0,0))
+    
+    makeButton("resetAngleButton", "Move Joint 1 Positive", resetAngleButton_handler, buttonColor=(0, 255, 0), buttonPos=(0, 0.55, 0))
+    makeButton("resetAngleButton", "Move Joint 1 Negative", resetAngleButton_handler, buttonColor=(0, 255, 0), buttonPos=(0, 0.65, 0))
+    
+    make
     
 scene.run_tasks()
