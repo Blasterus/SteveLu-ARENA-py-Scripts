@@ -229,7 +229,7 @@ def j2AngleNeg_handler(scene, evt, msg):
 
         rotateMyCobot(currAngles)
         
-def j3AnglePNeg_handler(scene, evt, msg):
+def j3AngleNeg_handler(scene, evt, msg):
     if evt.type == "mousedown":
         print("Joint 3 Positive Button pressed!")
         
@@ -240,7 +240,7 @@ def j3AnglePNeg_handler(scene, evt, msg):
 
         rotateMyCobot(currAngles)
 
-def j4AnglePos_handler(scene, evt, msg):
+def j4AngleNeg_handler(scene, evt, msg):
     if evt.type == "mousedown":
         print("Joint 4 Positive Button pressed!")
         
@@ -251,7 +251,7 @@ def j4AnglePos_handler(scene, evt, msg):
 
         rotateMyCobot(currAngles)
 
-def j5AnglePos_handler(scene, evt, msg):
+def j5AngleNeg_handler(scene, evt, msg):
     if evt.type == "mousedown":
         print("Joint 5 Positive Button pressed!")
         
@@ -262,7 +262,7 @@ def j5AnglePos_handler(scene, evt, msg):
 
         rotateMyCobot(currAngles)
 
-def j6AnglePos_handler(scene, evt, msg):
+def j6AngleNeg_handler(scene, evt, msg):
     if evt.type == "mousedown":
         print("Joint 6 Positive Button pressed!")
         
@@ -309,7 +309,7 @@ def makeButton(buttonID, buttonText, buttonHandler, buttonColor = (128,128,128),
     scene.add_object(buttonText)
     return button
 
-def makeSmallButton(buttonID, buttonText, buttonHandler, buttonColor = (128,128,128), buttonPos = (0,0,0), buttonRot = (0,0,0), buttonScale = (0.2, 0.08, 0.04), buttonTextColor = (255,255,255)):
+def makeSmallButton(buttonID, buttonText, buttonHandler, buttonColor = (128,128,128), buttonPos = (0,0,0), buttonRot = (0,0,0), buttonScale = (0.1, 0.08, 0.04), buttonTextColor = (255,255,255)):
     button = Box(
         object_id=buttonID,
 
@@ -345,9 +345,22 @@ def programStart():
     makeButton("resetAngleButton", "Reset angle!", resetAngleButton_handler, buttonColor=(255, 55, 11), buttonPos=(0, 0.65, 0))
     makeButton("randomColorButton", "Set random color!", randomColorButton_handler, buttonColor=(0, 255, 0), buttonPos=(0, 0.75, 0),buttonTextColor=(0,0,0))
     
-    makeButton("resetAngleButton", "Move Joint 1 Positive", resetAngleButton_handler, buttonColor=(0, 255, 0), buttonPos=(0, 0.55, 0))
-    makeButton("resetAngleButton", "Move Joint 1 Negative", resetAngleButton_handler, buttonColor=(0, 255, 0), buttonPos=(0, 0.65, 0))
+    makeButton("resetAngleButton", "Joint 1", j1AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.5, 0.55, 0))
+    makeButton("resetAngleButton", "Joint 1", j1AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.5, 0.65, 0))
     
-    make
+    makeButton("resetAngleButton", "Joint 2", j2AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.6, 0.55, 0))
+    makeButton("resetAngleButton", "Joint 2", j2AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.6, 0.65, 0))
+
+    makeButton("resetAngleButton", "Joint 3", j3AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.7, 0.55, 0))
+    makeButton("resetAngleButton", "Joint 3", j3AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.7, 0.65, 0))
+
+    makeButton("resetAngleButton", "Joint 4", j4AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.8, 0.55, 0))
+    makeButton("resetAngleButton", "Joint 4", j4AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.8, 0.65, 0))
+
+    makeButton("resetAngleButton", "Joint 5", j5AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.9, 0.55, 0))
+    makeButton("resetAngleButton", "Joint 5", j5AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.9, 0.65, 0))
+
+    makeButton("resetAngleButton", "Joint 6", j6AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(1, 0.55, 0))
+    makeButton("resetAngleButton", "Joint 6", j6AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(1, 0.65, 0))
     
 scene.run_tasks()
