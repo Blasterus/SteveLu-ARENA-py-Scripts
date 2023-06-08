@@ -148,8 +148,8 @@ def j1AnglePos_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[1]+10<80:
-            currAngles[1] = currAngles[1]+10
+        if currAngles[0]+10<80:
+            currAngles[0] = currAngles[0]+10
 
         rotateMyCobot(currAngles)
 
@@ -158,8 +158,8 @@ def j2AnglePos_handler(scene, evt, msg):
         print("Joint 2 Positive Button pressed!")
         
         currAngles = myCobot.get_angles()
-        if currAngles[2]+10<80:
-            currAngles[2] = currAngles[2]+10
+        if currAngles[1]+10<80:
+            currAngles[1] = currAngles[1]+10
 
         rotateMyCobot(currAngles)
         
@@ -168,8 +168,8 @@ def j3AnglePos_handler(scene, evt, msg):
         print("Joint 3 Positive Button pressed!")
         
         currAngles = myCobot.get_angles()
-        if currAngles[3]+10<80:
-            currAngles[3] = currAngles[3]+10
+        if currAngles[2]+10<80:
+            currAngles[2] = currAngles[2]+10
 
         rotateMyCobot(currAngles)
 
@@ -178,8 +178,8 @@ def j4AnglePos_handler(scene, evt, msg):
         print("Joint 4 Positive Button pressed!")
         
         currAngles = myCobot.get_angles()
-        if currAngles[4]+10<80:
-            currAngles[4] = currAngles[4]+10
+        if currAngles[3]+10<80:
+            currAngles[3] = currAngles[3]+10
 
         rotateMyCobot(currAngles)
 
@@ -189,8 +189,8 @@ def j5AnglePos_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[5]+10<80:
-            currAngles[5] = currAngles[5]+10
+        if currAngles[4]+10<80:
+            currAngles[4] = currAngles[4]+10
 
         rotateMyCobot(currAngles)
 
@@ -200,8 +200,8 @@ def j6AnglePos_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[6]+10<80:
-            currAngles[6] = currAngles[6]+10
+        if currAngles[5]+10<80:
+            currAngles[5] = currAngles[5]+10
 
         rotateMyCobot(currAngles)
 
@@ -213,8 +213,8 @@ def j1AngleNeg_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[1]-10>-80:
-            currAngles[1] = currAngles[1]-10
+        if currAngles[0]-10>-80:
+            currAngles[0] = currAngles[0]-10
 
         rotateMyCobot(currAngles)
 
@@ -224,8 +224,8 @@ def j2AngleNeg_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[2]-10>-80:
-            currAngles[2] = currAngles[2]-10
+        if currAngles[1]-10>-80:
+            currAngles[1] = currAngles[1]-10
 
         rotateMyCobot(currAngles)
         
@@ -235,8 +235,8 @@ def j3AngleNeg_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[3]-10>-80:
-            currAngles[3] = currAngles[3]+10
+        if currAngles[2]-10>-80:
+            currAngles[2] = currAngles[2]+10
 
         rotateMyCobot(currAngles)
 
@@ -246,8 +246,8 @@ def j4AngleNeg_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[4]-10>-80:
-            currAngles[4] = currAngles[4]+10
+        if currAngles[3]-10>-80:
+            currAngles[3] = currAngles[3]+10
 
         rotateMyCobot(currAngles)
 
@@ -257,8 +257,8 @@ def j5AngleNeg_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[5]-10>-80:
-            currAngles[5] = currAngles[5]+10
+        if currAngles[4]-10>-80:
+            currAngles[4] = currAngles[4]+10
 
         rotateMyCobot(currAngles)
 
@@ -268,8 +268,8 @@ def j6AngleNeg_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[6]-10>-80:
-            currAngles[6] = currAngles[6]+10
+        if currAngles[5]-10>-80:
+            currAngles[5] = currAngles[5]+10
 
         rotateMyCobot(currAngles)
 
@@ -280,6 +280,7 @@ def j0AnglePos_handler(scene, evt, msg):
     if evt.type == "mousedown":
         print("Joint 0 Positive Button pressed!")
         myCobot.send_angle(Angle.J0.value, 10, 50)
+
 
 
 #------MAKE BUTTONS ------#
@@ -337,19 +338,17 @@ def makeSmallButton(buttonID, buttonText, buttonHandler, buttonColor = (128,128,
     scene.add_object(buttonText)
     return button
 
-def makeText(textID, text, textHandler, textColor=(0,0,0), textPos = (0,0,0), textRot = (0,0,0), textScale = (0.5, 2, 1)):
+def makeText(textID, text, textColor=(0,0,0), textPos = (0,0,0), textRot = (0,0,0), textScale = (0.5, 2, 1)):
     return Text(
-        object_id=buttonID+"_text",
-        text=buttonText,
+        object_id=textID+"_text",
+        text=text,
         align="center",
             
-        position=buttonPos,
-        rotation=buttonRot,
-        scale=buttonScale,
+        position=textPos,
+        rotation=textRot,
+        scale=textScale,
 
-        color=buttonColor,
-
-        parent = button,
+        color=textColor,        
         persist=True,
     )
 
@@ -389,5 +388,11 @@ def programStart():
     makeSmallButton("j6AngleNegButton", "Joint 6", j6AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(1, 0.65, 0))
 
     makeButton("testingJ0", "testing what the hell J0 does", j0AnglePos_handler, buttonColor=(255, 55, 11), buttonPos=(0, 0.85, 0))
+
+    
+    angles = myCobot.get_angles()
+
+    makeText("dataText", f"Joint 1: {angles[0]}, Joint 2: {angles[1]}, Joint 3: {angles[2]}, Joint 4: {angles[3]}, Joint 5: {angles[4]}, Joint 6: {angles[5]}", textPos = (0, 0.45, 0))
+
     
 scene.run_tasks()
