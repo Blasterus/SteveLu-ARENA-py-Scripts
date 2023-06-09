@@ -244,7 +244,7 @@ def j3AngleNeg_handler(scene, evt, msg):
         currAngles = myCobot.get_angles()
 
         if currAngles[2]-10>-80:
-            currAngles[2] = currAngles[2]+10
+            currAngles[2] = currAngles[2]-10
 
         rotateMyCobot(currAngles)
 
@@ -255,7 +255,7 @@ def j4AngleNeg_handler(scene, evt, msg):
         currAngles = myCobot.get_angles()
 
         if currAngles[3]-10>-80:
-            currAngles[3] = currAngles[3]+10
+            currAngles[3] = currAngles[3]-10
 
         rotateMyCobot(currAngles)
 
@@ -266,7 +266,7 @@ def j5AngleNeg_handler(scene, evt, msg):
         currAngles = myCobot.get_angles()
 
         if currAngles[4]-10>-80:
-            currAngles[4] = currAngles[4]+10
+            currAngles[4] = currAngles[4]-10
 
         rotateMyCobot(currAngles)
 
@@ -277,17 +277,11 @@ def j6AngleNeg_handler(scene, evt, msg):
         currAngles = myCobot.get_angles()
 
         if currAngles[5]-10>-80:
-            currAngles[5] = currAngles[5]+10
+            currAngles[5] = currAngles[5]-10
 
         rotateMyCobot(currAngles)
 
 
-##### TESTING WHAT THE HELL JOINT 0 IS OKAY
-
-def j0AnglePos_handler(scene, evt, msg):
-    if evt.type == "mousedown":
-        print("Joint 0 Positive Button pressed!")
-        myCobot.send_angle(Angle.J0.value, 10, 50)
 
 
 
@@ -349,6 +343,9 @@ def makeSmallButton(buttonID, buttonText, buttonHandler, buttonColor = (128,128,
 def makeText(textID, text, textColor=(0,0,0), textPos = (0,0,0), textRot = (0,0,0), textScale = (0.5, 2, 1)):
     return Text(
         object_id=textID+"_text",
+
+        parent = MyCobotPi_J0,
+        
         text=text,
         align="center",
             
@@ -378,25 +375,23 @@ def programStart():
     makeButton("randomColorButton", "Set random color!", randomColorButton_handler, buttonColor=(0, 255, 0), buttonPos=(0, 0.75, 0),buttonTextColor=(0,0,0))
     
     # adding controller buttons
-    makeSmallButton("j1AnglePosButton", "Joint 1", j1AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.5, 0.55, 0))
-    makeSmallButton("j1AngleNegButton", "Joint 1", j1AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.5, 0.65, 0))
+    makeSmallButton("j1AnglePosButton", "Joint 1", j1AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.5, 0.65, 0))
+    makeSmallButton("j1AngleNegButton", "Joint 1", j1AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.5, 0.55, 0))
     
-    makeSmallButton("j2AnglePosButton", "Joint 2", j2AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.6, 0.55, 0))
-    makeSmallButton("j2AngleNegButton", "Joint 2", j2AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.6, 0.65, 0))
+    makeSmallButton("j2AnglePosButton", "Joint 2", j2AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.6, 0.65, 0))
+    makeSmallButton("j2AngleNegButton", "Joint 2", j2AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.6, 0.55, 0))
 
-    makeSmallButton("j3AnglePosButton", "Joint 3", j3AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.7, 0.55, 0))
-    makeSmallButton("j3AngleNegButton", "Joint 3", j3AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.7, 0.65, 0))
+    makeSmallButton("j3AnglePosButton", "Joint 3", j3AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.7, 0.65, 0))
+    makeSmallButton("j3AngleNegButton", "Joint 3", j3AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.7, 0.55, 0))
 
-    makeSmallButton("j4AnglePosButton", "Joint 4", j4AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.8, 0.55, 0))
-    makeSmallButton("j4AngleNegButton", "Joint 4", j4AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.8, 0.65, 0))
+    makeSmallButton("j4AnglePosButton", "Joint 4", j4AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.8, 0.65, 0))
+    makeSmallButton("j4AngleNegButton", "Joint 4", j4AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.8, 0.55, 0))
 
-    makeSmallButton("j5AnglePosButton", "Joint 5", j5AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.9, 0.55, 0))
-    makeSmallButton("j5AngleNegButton", "Joint 5", j5AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.9, 0.65, 0))
+    makeSmallButton("j5AnglePosButton", "Joint 5", j5AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.9, 0.65, 0))
+    makeSmallButton("j5AngleNegButton", "Joint 5", j5AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.9, 0.55, 0))
 
-    makeSmallButton("j6AnglePosButton", "Joint 6", j6AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(1, 0.55, 0))
-    makeSmallButton("j6AngleNegButton", "Joint 6", j6AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(1, 0.65, 0))
-
-    makeButton("testingJ0", "testing what the hell J0 does", j0AnglePos_handler, buttonColor=(255, 55, 11), buttonPos=(0, 0.85, 0))
+    makeSmallButton("j6AnglePosButton", "Joint 6", j6AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(1, 0.65, 0))
+    makeSmallButton("j6AngleNegButton", "Joint 6", j6AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(1, 0.55, 0))
 
     # data text display
     angles = myCobot.get_angles()
