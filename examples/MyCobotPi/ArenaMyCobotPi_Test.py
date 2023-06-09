@@ -414,8 +414,6 @@ def makeText():
     )
     scene.add_object(my_text)
 
-    print("THIS IS WORKING")
-
 
     
 scene.run_tasks()
