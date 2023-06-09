@@ -342,10 +342,7 @@ def makeSmallButton(buttonID, buttonText, buttonHandler, buttonColor = (128,128,
 
 def makeText(textID, text, textColor=(0,0,0), textPos = (0,0,0), textRot = (0,0,0), textScale = (0.5, 2, 1)):
     return Text(
-        object_id=textID+"_text",
-
-        parent = MyCobotPi_J0,
-        
+        object_id=textID+"_text",       
         text=text,
         align="center",
             
@@ -353,7 +350,9 @@ def makeText(textID, text, textColor=(0,0,0), textPos = (0,0,0), textRot = (0,0,
         rotation=textRot,
         scale=textScale,
 
-        color=textColor,        
+        color=textColor,    
+
+        parent = MyCobotPi_J0,    
         persist=True,
     )
 
