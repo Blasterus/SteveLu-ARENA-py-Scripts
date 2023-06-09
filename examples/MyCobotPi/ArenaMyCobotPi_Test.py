@@ -369,6 +369,7 @@ def programStart():
     makeButton("resetAngleButton", "Reset angle!", resetAngleButton_handler, buttonColor=(255, 55, 11), buttonPos=(0, 0.65, 0))
     makeButton("randomColorButton", "Set random color!", randomColorButton_handler, buttonColor=(0, 255, 0), buttonPos=(0, 0.75, 0),buttonTextColor=(0,0,0))
     
+    # adding controller buttons
     makeSmallButton("j1AnglePosButton", "Joint 1", j1AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.5, 0.55, 0))
     makeSmallButton("j1AngleNegButton", "Joint 1", j1AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.5, 0.65, 0))
     
@@ -389,7 +390,7 @@ def programStart():
 
     makeButton("testingJ0", "testing what the hell J0 does", j0AnglePos_handler, buttonColor=(255, 55, 11), buttonPos=(0, 0.85, 0))
 
-    
+    # data text display
     angles = myCobot.get_angles()
 
     makeText("dataText", f"Joint 1: {angles[0]}, Joint 2: {angles[1]}, Joint 3: {angles[2]}, Joint 4: {angles[3]}, Joint 5: {angles[4]}, Joint 6: {angles[5]}", textPos = (0, 0.45, 0))
