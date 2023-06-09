@@ -393,21 +393,23 @@ def programStart():
     makeSmallButton("j6AnglePosButton", "Joint 6", j6AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(1, 0.65, 0))
     makeSmallButton("j6AngleNegButton", "Joint 6", j6AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(1, 0.55, 0))
 
-    # data text display
-    angles = myCobot.get_angles()
-
-    #makeText("dataText", f"Joint 1: {angles[0]}, Joint 2: {angles[1]}, Joint 3: {angles[2]}, Joint 4: {angles[3]}, Joint 5: {angles[4]}, Joint 6: {angles[5]}", textPos = (0, 0.45, 0))
-
-    my_text = Text(
-        object_id="data_text",
-        text=f"Joint 1: {angles[0]}, Joint 2: {angles[1]}, Joint 3: {angles[2]}, Joint 4: {angles[3]}, Joint 5: {angles[4]}, Joint 6: {angles[5]}",
-        align="center",
-        font="mozillavr", 
-        position=(0, 0.95, 0),
-        scale=(1,1,1),
-        color=(100,255,255),
-        parent = MyCobotPi_J0
-    )
-    scene.add_object(my_text)
     
 scene.run_tasks()
+ 
+@scene.run_forever(interval_ms=100)
+# data text display
+
+def makeText():
+        angles = myCobot.get_angles()
+        my_text = Text(
+            object_id="data_text",
+            text=f"Joint 1: {angles[0]}, Joint 2: {angles[1]}, Joint 3: {angles[2]}, Joint 4: {angles[3]}, Joint 5: {angles[4]}, Joint 6: {angles[5]}",
+            align="center",
+            font="mozillavr", 
+            position=(0, 0.95, 0),
+            scale=(1,1,1),
+            color=(100,255,255),
+            parent = MyCobotPi_J0
+        )
+        scene.add_object(my_text)
+    
