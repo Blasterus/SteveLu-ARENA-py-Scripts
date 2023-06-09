@@ -399,6 +399,7 @@ def programStart():
 @scene.run_forever(interval_ms=100)
 # data text display
 
+
 def makeText():
     angles = myCobot.get_angles()
     my_text = Text(
@@ -407,7 +408,7 @@ def makeText():
         align="center",
         font="mozillavr", 
         position=(0, 1, 0),
-        scale=(0.5,0.5,0.5),
+        scale=(0.3,0.3,0.3),
         color=(100,255,255),
         parent = MyCobotPi_J0
     )
