@@ -13,7 +13,7 @@ from pymycobot.mycobot import MyCobot
 from pymycobot.genre import Angle, Coord
 
 #------MAKE ROBOT ARM------#
-myCobot = MyCobot(port = "/dev/cu.usbserial-023EDC85", baudrate = 115200, debug=True)
+myCobot = MyCobot(port = "/dev/ttyAMA0", baudrate = 1000000, debug=True)
 myCobot.send_angles([0,0,0,0,0,0], 50) #reset pose
 myCobot.set_color(247, 0, 255)
 
@@ -21,12 +21,20 @@ myCobot.set_color(247, 0, 255)
 scene = Scene(host="mqtt.arenaxr.org", namespace = "public", scene="arena")
 
 #------MAKE ROBOT ARM------#
+AprilTag = Box(
+    object_id="[SpotAR] Cobot 100",
+    position=(-2.79,1.688,-0.176),
+    rotation=(0,90,0),
+    scale=(0.15,0.15,0.06),
+    persist=True    
+)
 MyCobotPi_J0 = GLTF(
     object_id="MyCobotPi_J0",
     url="/store/users/johnchoi/MyCobotPi/MyCobotPi_J0/MyCobotPi_J0.gltf",
-    position=(0,0,0),
+    position=(-0.4,-0.75,0.8),
     rotation=(0,0,0),
     scale=(1,1,1),
+    parent=AprilTag,
     persist=True
 )
 MyCobotPi_J1 = GLTF(
