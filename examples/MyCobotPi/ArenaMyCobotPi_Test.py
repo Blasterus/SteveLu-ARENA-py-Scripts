@@ -356,6 +356,7 @@ def makeText(textID, text, textColor=(0,0,0), textPos = (0,0,0), textRot = (0,0,
         persist=True,
     )
 
+
 #------ PROGRAM INIT/UPDATE ------#
 
 @scene.run_once
@@ -371,7 +372,7 @@ def programStart():
     # Add buttons
     makeButton("randomAngleButton", "Go to random angle!", randomAngleButton_handler, buttonColor=(11, 55, 255), buttonPos=(0, 0.55, 0))
     makeButton("resetAngleButton", "Reset angle!", resetAngleButton_handler, buttonColor=(255, 55, 11), buttonPos=(0, 0.65, 0))
-    makeButton("randomColorButton", "Set random color!", randomColorButton_handler, buttonColor=(0, 255, 0), buttonPos=(0, 0.75, 0),buttonTextColor=(0,0,0))
+    makeButton("randomColorButton", "Set random color!", randomColorButton_handler, buttonColor=(247, 0, 255), buttonPos=(0, 0.75, 0),buttonTextColor=(0,0,0))
     
     # adding controller buttons
     makeSmallButton("j1AnglePosButton", "Joint 1", j1AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.5, 0.65, 0))
@@ -395,7 +396,18 @@ def programStart():
     # data text display
     angles = myCobot.get_angles()
 
-    makeText("dataText", f"Joint 1: {angles[0]}, Joint 2: {angles[1]}, Joint 3: {angles[2]}, Joint 4: {angles[3]}, Joint 5: {angles[4]}, Joint 6: {angles[5]}", textPos = (0, 0.45, 0))
+    #makeText("dataText", f"Joint 1: {angles[0]}, Joint 2: {angles[1]}, Joint 3: {angles[2]}, Joint 4: {angles[3]}, Joint 5: {angles[4]}, Joint 6: {angles[5]}", textPos = (0, 0.45, 0))
 
+    my_text = Text(
+        object_id="my_text",
+        text="Hello World!",
+        align="center",
+        font="mozillavr", 
+        position=(0,2,-3),
+        scale=(1.5,1.5,1.5),
+        color=(100,255,255),
+        parent = MyCobotPi_J0
+    )
+    scene.add_object(my_text)
     
 scene.run_tasks()
