@@ -26,7 +26,7 @@ AprilTag = Box(
     position=(-2.79,1.688,-0.176),
     rotation=(0,90,0),
     scale=(0.15,0.15,0.06),
-    persist=True    
+    persist=True
 )
 MyCobotPi_J0 = GLTF(
     object_id="MyCobotPi_J0",
@@ -311,7 +311,7 @@ def makeButtonText(button, buttonID, buttonText, buttonColor = (255,255,255), bu
 def makeButton(buttonID, buttonText, buttonHandler, buttonColor = (128,128,128), buttonPos = (0,0,0), buttonRot = (0,0,0), buttonScale = (0.4, 0.08, 0.04), buttonTextColor = (255,255,255)):
     button = Box(
         object_id=buttonID,
-
+        parent = MyCobotPi_J0,
         position=buttonPos,
         rotation=buttonRot,
         scale=buttonScale,
@@ -330,7 +330,7 @@ def makeButton(buttonID, buttonText, buttonHandler, buttonColor = (128,128,128),
 def makeSmallButton(buttonID, buttonText, buttonHandler, buttonColor = (128,128,128), buttonPos = (0,0,0), buttonRot = (0,0,0), buttonScale = (0.1, 0.08, 0.04), buttonTextColor = (255,255,255)):
     button = Box(
         object_id=buttonID,
-
+        parent = MyCobotPi_J0,
         position=buttonPos,
         rotation=buttonRot,
         scale=buttonScale,
