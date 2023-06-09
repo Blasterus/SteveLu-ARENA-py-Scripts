@@ -18,7 +18,7 @@ myCobot.send_angles([0,0,0,0,0,0], 50) #reset pose
 myCobot.set_color(247, 0, 255)
 
 #------MAKE CONNECT TO ARENA------#
-scene = Scene(host="mqtt.arenaxr.org", namespace = "public", scene="arena")
+scene = Scene(host="mqtt.arenaxr.org", namespace = "zhilu", scene="arena")
 
 #------MAKE ROBOT ARM------#
 AprilTag = Box(
