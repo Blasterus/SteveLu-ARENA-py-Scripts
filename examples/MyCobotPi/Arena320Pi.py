@@ -13,7 +13,7 @@ from pymycobot.mycobot import MyCobot
 from pymycobot.genre import Angle, Coord
 
 #------MAKE ROBOT ARM------#
-myCobot = MyCobot(port = "/dev/ttyAMA0", baudrate = 1000000, debug=True)
+myCobot = MyCobot(port = "/dev/ttyAMA0", baudrate = 115200, debug=True)
 myCobot.send_angles([0,0,0,0,0,0], 50) #reset pose
 myCobot.set_color(247, 0, 255)
 
