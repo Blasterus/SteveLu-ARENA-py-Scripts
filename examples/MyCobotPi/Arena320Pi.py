@@ -282,6 +282,17 @@ def j6AngleNeg_handler(scene, evt, msg):
         rotateMyCobot(currAngles)
 
 
+def gripperButton_handler(scene, evt, msg):
+    if evt.type =="mousedown":
+        print ("Gripper button pressed!")
+
+        state = get_gripper_value()
+
+        if state == 0:
+            set_gripper_state(1, 80)
+
+        else:
+            set_gripper_state(0, 80)
 
 
 
@@ -392,6 +403,9 @@ def programStart():
 
     makeSmallButton("j6AnglePosButton", "Joint 6", j6AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(1, 0.65, 0))
     makeSmallButton("j6AngleNegButton", "Joint 6", j6AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(1, 0.55, 0))
+
+
+    makeButton("gripperButton", "Open/Close Gripper", gripperButton_handler, buttonColor=(254, 208, 0), buttonPos=(0, 45, 0),buttonTextColor=(0,0,0))
 
     
 
