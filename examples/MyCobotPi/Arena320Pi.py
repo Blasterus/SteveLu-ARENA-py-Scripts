@@ -385,6 +385,8 @@ def programStart():
     makeButton("resetAngleButton", "Reset angle!", resetAngleButton_handler, buttonColor=(255, 55, 11), buttonPos=(0, 0.65, 0))
     makeButton("randomColorButton", "Set random color!", randomColorButton_handler, buttonColor=(247, 0, 255), buttonPos=(0, 0.75, 0),buttonTextColor=(0,0,0))
     
+    makeButton("gripperButton", "Open/Close Gripper", gripperButton_handler, buttonColor=(254, 208, 0), buttonPos=(0, 0.45, 0),buttonTextColor=(0,0,0))
+
     # adding controller buttons
     makeSmallButton("j1AnglePosButton", "Joint 1", j1AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.5, 0.65, 0))
     makeSmallButton("j1AngleNegButton", "Joint 1", j1AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(0.5, 0.55, 0))
@@ -405,12 +407,12 @@ def programStart():
     makeSmallButton("j6AngleNegButton", "Joint 6", j6AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(1, 0.55, 0))
 
 
-    makeButton("gripperButton", "Open/Close Gripper", gripperButton_handler, buttonColor=(254, 208, 0), buttonPos=(0, 45, 0),buttonTextColor=(0,0,0))
+    
 
     
 
  
-@scene.run_forever(interval_ms=100)
+@scene.run_forever(interval_ms=1000)
 # data text display
 
 
