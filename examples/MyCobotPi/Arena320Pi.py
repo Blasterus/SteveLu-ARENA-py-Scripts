@@ -286,13 +286,13 @@ def randomGripperButton_handler(scene, evt, msg):
     if evt.type =="mousedown":
         print ("Random Gripper button pressed!")
 
-        myCobot.set_gripper_value(random.uniform(0,1), 80)
+        myCobot.set_gripper_value(random.uniform(0,100), 80)
         
 def gripperOpenButton_handler(scene, evt, msg):
     if evt.type =="mousedown":
         print ("Gripper open button pressed!")
 
-        myCobot.set_gripper_value(0, 80)
+        myCobot.set_gripper_value(100, 80)
         
 def gripperCloseButton_handler(scene, evt, msg):
     if evt.type =="mousedown":
@@ -390,7 +390,7 @@ def programStart():
     makeButton("resetAngleButton", "Reset angle!", resetAngleButton_handler, buttonColor=(255, 55, 11), buttonPos=(0, 0.65, 0))
     makeButton("randomColorButton", "Set random color!", randomColorButton_handler, buttonColor=(247, 0, 255), buttonPos=(0, 0.75, 0),buttonTextColor=(0,0,0))
     
-    makeButton("randomGripperButton", "Random Gripper Position", randomGripperButton_handler, buttonColor=(254, 208, 0), buttonPos=(0, 0.45, 0),buttonTextColor=(0,0,0))
+    makeButton("randomGripperButton", "Random Gripper Pos", randomGripperButton_handler, buttonColor=(254, 208, 0), buttonPos=(0, 0.45, 0),buttonTextColor=(0,0,0))
 
    
 
@@ -415,8 +415,8 @@ def programStart():
 
     #gripper controls
 
-    makeSmallButton("gripperButton", "Open Gripper", gripperOpenButton_handler, buttonColor=(0, 255, 0), buttonPos=(1.3, 0.65, 0))
-    makeSmallButton("gripperButton", "Close Gripper", gripperCloseButton_handler, buttonColor=(0, 255, 0), buttonPos=(1.3, 0.55, 0))
+    makeSmallButton("gripperOpenButton", "Open Gripper", gripperOpenButton_handler, buttonColor=(0, 255, 0), buttonPos=(1.3, 0.65, 0))
+    makeSmallButton("gripperCloseButton", "Close Gripper", gripperCloseButton_handler, buttonColor=(255, 0, 0), buttonPos=(1.3, 0.55, 0))
     
 
     
