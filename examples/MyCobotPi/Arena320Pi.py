@@ -16,7 +16,7 @@ from pymycobot.genre import Angle, Coord
 myCobot = MyCobot(port = "/dev/ttyAMA0", baudrate = 115200, debug=True)
 myCobot.send_angles([0,0,0,0,0,0], 50) #reset pose
 myCobot.set_color(247, 0, 255)
-myCobot.set_gripper_state(0, 80)
+myCobot.set_gripper_value(99, 80)
 #------MAKE CONNECT TO ARENA------#
 scene = Scene(host="mqtt.arenaxr.org", namespace = "zhilu", scene="arena")
 
@@ -282,6 +282,8 @@ def j6AngleNeg_handler(scene, evt, msg):
         rotateMyCobot(currAngles)
 
 
+# gripper button handlers
+
 def randomGripperButton_handler(scene, evt, msg):
     if evt.type =="mousedown":
         print ("Random Gripper button pressed!")
@@ -292,7 +294,7 @@ def gripperOpenButton_handler(scene, evt, msg):
     if evt.type =="mousedown":
         print ("Gripper open button pressed!")
 
-        myCobot.set_gripper_value(100, 100)
+        myCobot.set_gripper_value(99, 100)
         
 def gripperCloseButton_handler(scene, evt, msg):
     if evt.type =="mousedown":
@@ -375,6 +377,32 @@ def makeText(textID, text, textColor=(0,0,0), textPos = (0,0,0), textRot = (0,0,
 
 #------ PROGRAM INIT/UPDATE ------#
 
+#global text variables so we can update it below
+data_text = Text(
+    object_id="data_text",
+    text="hello",
+    font="mozillavr", 
+    position=(0, 1, 0),
+    scale=(0.2,0.2,0.2),
+    color=(100,255,255),
+    parent = MyCobotPi_J0
+    )
+
+scene.add_object(data_text)
+
+gripper_text = Text(
+        object_id="gripper_text",
+        text= "hello",
+        align="center",
+        font="mozillavr", 
+        position=(0, 0.9, 0),
+        scale=(0.2,0.2,0.2),
+        color=(100,255,255),
+        parent = MyCobotPi_J0
+    )
+
+scene.add_object(gripper_text)
+
 @scene.run_once
 def programStart():
     # Add myCobotPi 
@@ -413,55 +441,35 @@ def programStart():
     makeSmallButton("j6AnglePosButton", "Joint 6", j6AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(1, 0.65, 0))
     makeSmallButton("j6AngleNegButton", "Joint 6", j6AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(1, 0.55, 0))
 
-    #gripper controls
+    #gripper control buttons
 
     makeSmallButton("gripperOpenButton", "Open Gripper", gripperOpenButton_handler, buttonColor=(0, 255, 0), buttonPos=(1.3, 0.65, 0))
     makeSmallButton("gripperCloseButton", "Close Gripper", gripperCloseButton_handler, buttonColor=(255, 0, 0), buttonPos=(1.3, 0.55, 0))
-    
 
-    
 
- 
-@scene.run_forever(interval_ms=1000)
-# data text display
-
+#init the 2 text displays 
 
 def makeText():
     angles = myCobot.get_angles()
-    my_text = Text(
+    data_text = Text(
         object_id="data_text",
         text=f"Joint 1: {angles[0]}, Joint 2: {angles[1]}, Joint 3: {angles[2]}, Joint 4: {angles[3]}, Joint 5: {angles[4]}, Joint 6: {angles[5]}",
         align="center",
         font="mozillavr", 
-        position=(0, 1.1, 0),
+        position=(0, 1, 0),
         scale=(0.2,0.2,0.2),
         color=(100,255,255),
         parent = MyCobotPi_J0
     )
 
-    scene.add_object(my_text)
-    
-
-
-@scene.run_forever(interval_ms=1000)
-#gripper text display
+    scene.add_object(data_text)
 
 def makeGripperText():
 
-    gripperValue = myCobot.get_gripper_value()
-    grippertext = ""
 
-    valueZ = gripperValue-0
-    valueH = 100-gripperValue
-
-    if valueH<valueZ:
-        grippertext = "Closed"
-    else:
-        grippertext = "Open"
-
-    my_text = Text(
+    gripper_text = Text(
         object_id="gripper_text",
-        text= "Gripper: " + grippertext,
+        text= "Gripper: ",
         align="center",
         font="mozillavr", 
         position=(0, 0.9, 0),
@@ -470,7 +478,37 @@ def makeGripperText():
         parent = MyCobotPi_J0
     )
 
-    scene.add_object(my_text)
+    scene.add_object(gripper_text)
+    
+
+ 
+@scene.run_forever(interval_ms=1000)
+# updating data text display and gripper text display ever second
+
+def updateData():
+
+    angles = myCobot.get_angles()
+
+    data_text.data.text = f"Joint 1: {angles[0]}, Joint 2: {angles[1]}, Joint 3: {angles[2]}, Joint 4: {angles[3]}, Joint 5: {angles[4]}, Joint 6: {angles[5]}"
+
+
+    ######
+
+    gripperValue = myCobot.get_gripper_value()
+
+    grippertext = ""
+
+    if gripperValue <50:
+        grippertext = "Closed"
+    if gripperValue >= 50:
+        grippertext = "Open"
+
+    gripper_text.data.text = "Gripper: " + grippertext
+
+
+    scene.update_object(data_text)
+    scene.update_object(gripper_text)
+
 
     
 scene.run_tasks()
