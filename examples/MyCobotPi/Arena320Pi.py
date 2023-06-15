@@ -156,8 +156,8 @@ def j1AnglePos_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[0]+10<80:
-            currAngles[0] = currAngles[0]+10
+
+        currAngles[0] = currAngles[0]+10
 
         rotateMyCobot(currAngles)
 
@@ -166,8 +166,8 @@ def j2AnglePos_handler(scene, evt, msg):
         print("Joint 2 Positive Button pressed!")
         
         currAngles = myCobot.get_angles()
-        if currAngles[1]+10<80:
-            currAngles[1] = currAngles[1]+10
+        
+        currAngles[1] = currAngles[1]+10
 
         rotateMyCobot(currAngles)
         
@@ -176,8 +176,8 @@ def j3AnglePos_handler(scene, evt, msg):
         print("Joint 3 Positive Button pressed!")
         
         currAngles = myCobot.get_angles()
-        if currAngles[2]+10<80:
-            currAngles[2] = currAngles[2]+10
+        
+        currAngles[2] = currAngles[2]+10
 
         rotateMyCobot(currAngles)
 
@@ -186,8 +186,8 @@ def j4AnglePos_handler(scene, evt, msg):
         print("Joint 4 Positive Button pressed!")
         
         currAngles = myCobot.get_angles()
-        if currAngles[3]+10<80:
-            currAngles[3] = currAngles[3]+10
+        
+        currAngles[3] = currAngles[3]+10
 
         rotateMyCobot(currAngles)
 
@@ -197,8 +197,8 @@ def j5AnglePos_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[4]+10<80:
-            currAngles[4] = currAngles[4]+10
+        
+        currAngles[4] = currAngles[4]+10
 
         rotateMyCobot(currAngles)
 
@@ -208,8 +208,8 @@ def j6AnglePos_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[5]+10<80:
-            currAngles[5] = currAngles[5]+10
+        
+        currAngles[5] = currAngles[5]+10
 
         rotateMyCobot(currAngles)
 
@@ -221,8 +221,8 @@ def j1AngleNeg_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[0]-10>-80:
-            currAngles[0] = currAngles[0]-10
+        
+        currAngles[0] = currAngles[0]-10
 
         rotateMyCobot(currAngles)
 
@@ -232,8 +232,8 @@ def j2AngleNeg_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[1]-10>-80:
-            currAngles[1] = currAngles[1]-10
+        
+        currAngles[1] = currAngles[1]-10
 
         rotateMyCobot(currAngles)
         
@@ -243,8 +243,8 @@ def j3AngleNeg_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[2]-10>-80:
-            currAngles[2] = currAngles[2]-10
+        
+        currAngles[2] = currAngles[2]-10
 
         rotateMyCobot(currAngles)
 
@@ -254,8 +254,8 @@ def j4AngleNeg_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[3]-10>-80:
-            currAngles[3] = currAngles[3]-10
+        
+        currAngles[3] = currAngles[3]-10
 
         rotateMyCobot(currAngles)
 
@@ -265,8 +265,8 @@ def j5AngleNeg_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[4]-10>-80:
-            currAngles[4] = currAngles[4]-10
+        
+        currAngles[4] = currAngles[4]-10
 
         rotateMyCobot(currAngles)
 
@@ -276,8 +276,8 @@ def j6AngleNeg_handler(scene, evt, msg):
         
         currAngles = myCobot.get_angles()
 
-        if currAngles[5]-10>-80:
-            currAngles[5] = currAngles[5]-10
+        
+        currAngles[5] = currAngles[5]-10
 
         rotateMyCobot(currAngles)
 
@@ -286,7 +286,7 @@ def randomGripperButton_handler(scene, evt, msg):
     if evt.type =="mousedown":
         print ("Random Gripper button pressed!")
 
-        myCobot.set_gripper_value(random.uniform(0,100), 80)
+        myCobot.set_gripper_value(random.randrange(0,100), 80)
         
 def gripperOpenButton_handler(scene, evt, msg):
     if evt.type =="mousedown":
@@ -434,11 +434,36 @@ def makeText():
         align="center",
         font="mozillavr", 
         position=(0, 1, 0),
-        scale=(0.3,0.3,0.3),
+        scale=(0.2,0.2,0.2),
         color=(100,255,255),
         parent = MyCobotPi_J0
     )
+
+    gripperValue = myCobot.get_gripper_value()
+    grippertext = ""
+
+    valueZ = gripperValue-0
+    valueH = 100-gripperValue
+
+    if valueH<valueZ:
+        grippertext = "Closed"
+    else:
+        grippertext = "Open"
+
+    my_text2 = Text(
+        object_id="data_text",
+        text= "Gripper: " + grippertext,
+        align="center",
+        font="mozillavr", 
+        position=(0, 0.8, 0),
+        scale=(0.2,0.2,0.2),
+        color=(100,255,255),
+        parent = MyCobotPi_J0
+    )
+    
+
     scene.add_object(my_text)
+    scene.add_object(my_text2)
 
 
     
