@@ -282,18 +282,23 @@ def j6AngleNeg_handler(scene, evt, msg):
         rotateMyCobot(currAngles)
 
 
-def gripperButton_handler(scene, evt, msg):
+def randomGripperButton_handler(scene, evt, msg):
     if evt.type =="mousedown":
-        print ("Gripper button pressed!")
+        print ("Random Gripper button pressed!")
 
-        value = myCobot.get_gripper_value()
+        myCobot.set_gripper_value(random.uniform(0,1), 80)
+        
+def gripperOpenButton_handler(scene, evt, msg):
+    if evt.type =="mousedown":
+        print ("Gripper open button pressed!")
 
-        if value != 1:
-            myCobot.set_gripper_value(1, 80)
+        myCobot.set_gripper_value(0, 80)
+        
+def gripperCloseButton_handler(scene, evt, msg):
+    if evt.type =="mousedown":
+        print ("Gripper close button pressed!")
 
-        if value == 1:
-            myCobot.set_gripper_value(0, 80)
-
+        myCobot.set_gripper_value(1, 80)
 
 
 #------MAKE BUTTONS ------#
@@ -385,7 +390,9 @@ def programStart():
     makeButton("resetAngleButton", "Reset angle!", resetAngleButton_handler, buttonColor=(255, 55, 11), buttonPos=(0, 0.65, 0))
     makeButton("randomColorButton", "Set random color!", randomColorButton_handler, buttonColor=(247, 0, 255), buttonPos=(0, 0.75, 0),buttonTextColor=(0,0,0))
     
-    makeButton("gripperButton", "Open/Close Gripper", gripperButton_handler, buttonColor=(254, 208, 0), buttonPos=(0, 0.45, 0),buttonTextColor=(0,0,0))
+    makeButton("randomGripperButton", "Random Gripper Position", randomGripperButton_handler, buttonColor=(254, 208, 0), buttonPos=(0, 0.45, 0),buttonTextColor=(0,0,0))
+
+   
 
     # adding controller buttons
     makeSmallButton("j1AnglePosButton", "Joint 1", j1AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(0.5, 0.65, 0))
@@ -406,7 +413,10 @@ def programStart():
     makeSmallButton("j6AnglePosButton", "Joint 6", j6AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(1, 0.65, 0))
     makeSmallButton("j6AngleNegButton", "Joint 6", j6AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(1, 0.55, 0))
 
+    #gripper controls
 
+    makeSmallButton("gripperButton", "Open Gripper", gripperOpenButton_handler, buttonColor=(0, 255, 0), buttonPos=(1.3, 0.65, 0))
+    makeSmallButton("gripperButton", "Close Gripper", gripperCloseButton_handler, buttonColor=(0, 255, 0), buttonPos=(1.3, 0.55, 0))
     
 
     
