@@ -433,7 +433,7 @@ def makeText():
         text=f"Joint 1: {angles[0]}, Joint 2: {angles[1]}, Joint 3: {angles[2]}, Joint 4: {angles[3]}, Joint 5: {angles[4]}, Joint 6: {angles[5]}",
         align="center",
         font="mozillavr", 
-        position=(0, 1, 0),
+        position=(0, 1.2, 0),
         scale=(0.2,0.2,0.2),
         color=(100,255,255),
         parent = MyCobotPi_J0
@@ -455,7 +455,7 @@ def makeText():
         text= "Gripper: " + grippertext,
         align="center",
         font="mozillavr", 
-        position=(0, 0.8, 0),
+        position=(0, 1, 0),
         scale=(0.2,0.2,0.2),
         color=(100,255,255),
         parent = MyCobotPi_J0
