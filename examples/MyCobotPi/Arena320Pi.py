@@ -441,7 +441,7 @@ def programStart():
     makeSmallButton("j6AnglePosButton", "Joint 6", j6AnglePos_handler, buttonColor=(0, 255, 0), buttonPos=(1, 0.65, 0))
     makeSmallButton("j6AngleNegButton", "Joint 6", j6AngleNeg_handler, buttonColor=(255, 0, 0), buttonPos=(1, 0.55, 0))
 
-    #gripper control buttons
+    #adding gripper control buttons
 
     makeSmallButton("gripperOpenButton", "Open Gripper", gripperOpenButton_handler, buttonColor=(0, 255, 0), buttonPos=(1.3, 0.65, 0))
     makeSmallButton("gripperCloseButton", "Close Gripper", gripperCloseButton_handler, buttonColor=(255, 0, 0), buttonPos=(1.3, 0.55, 0))
