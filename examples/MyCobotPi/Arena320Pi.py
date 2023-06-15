@@ -286,13 +286,13 @@ def gripperButton_handler(scene, evt, msg):
     if evt.type =="mousedown":
         print ("Gripper button pressed!")
 
-        state = myCobot.get_gripper_value()
+        value = myCobot.get_gripper_value()
 
-        if state == 0:
-            myCobot.set_gripper_state(1, 80)
+        if value != 1:
+            myCobot.set_gripper_value(1, 80)
 
-        else:
-            myCobot.set_gripper_state(0, 80)
+        if value == 1:
+            myCobot.set_gripper_value(0, 80)
 
 
 
