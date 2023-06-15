@@ -16,7 +16,7 @@ from pymycobot.genre import Angle, Coord
 myCobot = MyCobot(port = "/dev/ttyAMA0", baudrate = 115200, debug=True)
 myCobot.send_angles([0,0,0,0,0,0], 50) #reset pose
 myCobot.set_color(247, 0, 255)
-
+myCobot.set_gripper_state(0, 80)
 #------MAKE CONNECT TO ARENA------#
 scene = Scene(host="mqtt.arenaxr.org", namespace = "zhilu", scene="arena")
 
