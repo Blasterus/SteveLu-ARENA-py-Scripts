@@ -111,7 +111,7 @@ def rotateMyCobot(angles):
     scene.update_object(MyCobotPi_J5)
     scene.update_object(MyCobotPi_J6)
     #update real robot
-    myCobot.send_angles(angles, 50)
+    myCobot.send_angles(angles, 80)
     print("::send_angles() ==> angles {}, speed 100\n".format(angles))
 
 randomColorButton = Box(object_id="randomColorButton")
@@ -286,19 +286,19 @@ def randomGripperButton_handler(scene, evt, msg):
     if evt.type =="mousedown":
         print ("Random Gripper button pressed!")
 
-        myCobot.set_gripper_value(random.randrange(0,100), 80)
+        myCobot.set_gripper_value(random.randrange(0,100), 100)
         
 def gripperOpenButton_handler(scene, evt, msg):
     if evt.type =="mousedown":
         print ("Gripper open button pressed!")
 
-        myCobot.set_gripper_value(100, 80)
+        myCobot.set_gripper_value(100, 100)
         
 def gripperCloseButton_handler(scene, evt, msg):
     if evt.type =="mousedown":
         print ("Gripper close button pressed!")
 
-        myCobot.set_gripper_value(1, 80)
+        myCobot.set_gripper_value(1, 100)
 
 
 #------MAKE BUTTONS ------#
