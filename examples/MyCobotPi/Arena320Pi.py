@@ -433,11 +433,20 @@ def makeText():
         text=f"Joint 1: {angles[0]}, Joint 2: {angles[1]}, Joint 3: {angles[2]}, Joint 4: {angles[3]}, Joint 5: {angles[4]}, Joint 6: {angles[5]}",
         align="center",
         font="mozillavr", 
-        position=(0, 1.2, 0),
+        position=(0, 1.1, 0),
         scale=(0.2,0.2,0.2),
         color=(100,255,255),
         parent = MyCobotPi_J0
     )
+
+    scene.add_object(my_text)
+    
+
+
+@scene.run_forever(interval_ms=1000)
+#gripper text display
+
+def makeGripperText():
 
     gripperValue = myCobot.get_gripper_value()
     grippertext = ""
@@ -450,21 +459,18 @@ def makeText():
     else:
         grippertext = "Open"
 
-    my_text2 = Text(
-        object_id="data_text",
+    my_text = Text(
+        object_id="gripper_text",
         text= "Gripper: " + grippertext,
         align="center",
         font="mozillavr", 
-        position=(0, 1, 0),
+        position=(0, 0.9, 0),
         scale=(0.2,0.2,0.2),
         color=(100,255,255),
         parent = MyCobotPi_J0
     )
-    
 
     scene.add_object(my_text)
-    scene.add_object(my_text2)
-
 
     
 scene.run_tasks()
