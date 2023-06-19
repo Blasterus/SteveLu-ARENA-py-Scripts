@@ -39,55 +39,55 @@ MyCobotPi_J0 = GLTF(
 )
 MyCobotPi_J1 = GLTF(
     object_id="MyCobotPi_J1",
-    url="/store/users/johnchoi/MyCobotPi/MyCobotPi_J1/MyCobotPi_J1.gltf",
+    url="/store/users/zhilu/models/joint1.glb",
     position=(0,0,0),
     rotation=(0,0,0),
-    scale=(1,1,1),
+    scale=(0.001,0.001,0.001),
     parent=MyCobotPi_J0,
     persist=True
 )
 MyCobotPi_J2 = GLTF(
     object_id="MyCobotPi_J2",
-    url="/store/users/johnchoi/MyCobotPi/MyCobotPi_J2/MyCobotPi_J2.gltf",
+    url="/store/users/zhilu/models/joint2.glb",
     position=(0,0.1433,0),
     rotation=(0,0,0),
-    scale=(1,1,1),
+    scale=(0.1,0.1,0.1),
     parent=MyCobotPi_J1,
     persist=True
 )
 MyCobotPi_J3 = GLTF(
     object_id="MyCobotPi_J3",
-    url="/store/users/johnchoi/MyCobotPi/MyCobotPi_J3/MyCobotPi_J3.gltf",
+    url="/store/users/zhilu/models/joint3.glb",
     position=(0,0.1075,0),
     rotation=(0,0,0),
-    scale=(1,1,1),
+    scale=(0.1,0.1,0.1),
     parent=MyCobotPi_J2,
     persist=True
 )
 MyCobotPi_J4 = GLTF(
     object_id="MyCobotPi_J4",
-    url="/store/users/johnchoi/MyCobotPi/MyCobotPi_J4/MyCobotPi_J4.gltf",
+    url="/store/users/zhilu/models/joint4.glb",
     position=(0,0.09710006,0),
     rotation=(0,0,0),
-    scale=(1,1,1),
+    scale=(0.1,0.1,0.1),
     parent=MyCobotPi_J3,
     persist=True
 )
 MyCobotPi_J5 = GLTF(
     object_id="MyCobotPi_J5",
-    url="/store/users/johnchoi/MyCobotPi/MyCobotPi_J5/MyCobotPi_J5.gltf",
+    url="/store/users/zhilu/models/joint5.glb",
     position=(0.06340005,0,0),
     rotation=(0,0,0),
-    scale=(1,1,1),
+    scale=(0.1,0.1,0.1),
     parent=MyCobotPi_J4,
     persist=True
 )
 MyCobotPi_J6 = GLTF(
     object_id="MyCobotPi_J6",
-    url="/store/users/johnchoi/MyCobotPi/MyCobotPi_J6/MyCobotPi_J6.gltf",
+    url="/store/users/zhilu/models/joint6.glb",
     position=(0,0.07610026,0),
     rotation=(0,0,0),
-    scale=(1,1,1),
+    scale=(0.1,0.1,0.1),
     parent=MyCobotPi_J5,
     persist=True
 )
@@ -418,7 +418,7 @@ def programStart():
     makeButton("resetAngleButton", "Reset angle!", resetAngleButton_handler, buttonColor=(255, 55, 11), buttonPos=(0, 0.65, 0))
     makeButton("randomColorButton", "Set random color!", randomColorButton_handler, buttonColor=(247, 0, 255), buttonPos=(0, 0.75, 0),buttonTextColor=(0,0,0))
     
-    makeButton("randomGripperButton", "Random Gripper Pos", randomGripperButton_handler, buttonColor=(254, 208, 0), buttonPos=(0, 0.45, 0),buttonTextColor=(0,0,0))
+    makeButton("randomGripperButton", "Random Gripper Pos", randomGripperButton_handler, buttonColor=(254, 208, 0), buttonPos=(0.7, 0.45, 0),buttonTextColor=(0,0,0))
 
    
 
