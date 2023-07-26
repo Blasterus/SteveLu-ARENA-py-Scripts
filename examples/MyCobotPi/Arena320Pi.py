@@ -321,11 +321,11 @@ def setPoseButton_handler(scene, evt, msg):
 
 def playPosesButton_handler(scene, evt, msg):
     if evt.type == "mousedown":
-        print ("Pplaying poses!")
+        print ("Playing poses!")
 
         for angles in poses:
             rotateMyCobot(angles)
-            
+
 
 
 #------MAKE BUTTONS ------#
