@@ -546,7 +546,7 @@ def updateData():
     #gripper_text.data.text = "Gripper: " + grippertext
 
 
-    #scene.update_object(data_text)
+    scene.update_object(data_text)
     #scene.update_object(gripper_text)
 
 #game controller
