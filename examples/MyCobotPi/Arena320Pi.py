@@ -13,12 +13,12 @@ from pymycobot.mycobot import MyCobot
 from pymycobot.genre import Angle, Coord
 
 #pygame for controller
-import pygame
-from pygame.locals import *
-pygame.init()
+#import pygame
+#from pygame.locals import *
+#pygame.init()
 
-pygame.joystick.init()
-joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
+#pygame.joystick.init()
+#joysticks = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
 
 #------MAKE ROBOT ARM------#
 myCobot = MyCobot(port = "/dev/ttyAMA0", baudrate = 115200, debug=True)
@@ -34,12 +34,21 @@ poses = []
 scene = Scene(host="arenaxr.org", namespace = "zhilu", scene="arena")
 
 #------MAKE ROBOT ARM------#
+AprilTag = Box(
+    object_id = "base",
+    position = (-2.79, 1.688, -0.176),
+    rotation = (0,90,0),
+    scale = (0.15,0.15,0.06),
+    persist = True
+)
+
 MyCobotPi_J0 = GLTF(
     object_id="MyCobotPi_J0",
     url="/store/users/johnchoi/MyCobotPi/MyCobotPi_J0/MyCobotPi_J0.gltf",
     position=(0,0,0),
     rotation=(0,0,0),
     scale=(1,1,1),
+    parent = AprilTag,
     persist=True
 )
 MyCobotPi_J1 = GLTF(
@@ -415,18 +424,18 @@ data_text = Text(
 
 scene.add_object(data_text)
 
-gripper_text = Text(
-        object_id="gripper_text",
-        text= "hello",
-        align="center",
-        font="mozillavr", 
-        position=(0, 0.9, 0),
-        scale=(0.2,0.2,0.2),
-        color=(100,255,255),
-        parent = MyCobotPi_J0
-    )
+#gripper_text = Text(
+        #object_id="gripper_text",
+        #text= "hello",
+        #align="center",
+        #font="mozillavr", 
+        #position=(0, 0.9, 0),
+        #scale=(0.2,0.2,0.2),
+        #color=(100,255,255),
+        #parent = MyCobotPi_J0
+    #)
 
-scene.add_object(gripper_text)
+#scene.add_object(gripper_text)
 
 @scene.run_once
 def programStart():
@@ -443,7 +452,7 @@ def programStart():
     makeButton("resetAngleButton", "Reset angle!", resetAngleButton_handler, buttonColor=(255, 55, 11), buttonPos=(0, 0.65, 0))
     makeButton("randomColorButton", "Set random color!", randomColorButton_handler, buttonColor=(247, 0, 255), buttonPos=(0, 0.75, 0),buttonTextColor=(0,0,0))
     
-    makeButton("randomGripperButton", "Random Gripper Pos", randomGripperButton_handler, buttonColor=(254, 208, 0), buttonPos=(0.7, 0.45, 0),buttonTextColor=(0,0,0))
+    #makeButton("randomGripperButton", "Random Gripper Pos", randomGripperButton_handler, buttonColor=(254, 208, 0), buttonPos=(0.7, 0.45, 0),buttonTextColor=(0,0,0))
 
    
 
@@ -468,14 +477,14 @@ def programStart():
 
     #adding gripper control buttons
 
-    makeSmallButton("gripperOpenButton", "Open Gripper", gripperOpenButton_handler, buttonColor=(0, 255, 0), buttonPos=(1.3, 0.65, 0))
-    makeSmallButton("gripperCloseButton", "Close Gripper", gripperCloseButton_handler, buttonColor=(255, 0, 0), buttonPos=(1.3, 0.55, 0))
+    #makeSmallButton("gripperOpenButton", "Open Gripper", gripperOpenButton_handler, buttonColor=(0, 255, 0), buttonPos=(1.3, 0.65, 0))
+    #makeSmallButton("gripperCloseButton", "Close Gripper", gripperCloseButton_handler, buttonColor=(255, 0, 0), buttonPos=(1.3, 0.55, 0))
 
 
     #adding pose buttons
 
-    makeButton("playPosesButton", "Play poses", playPosesButton_handler, buttonColor=(11, 55, 255), buttonPos=(0, 0.85, 0))
-    makeButton("setPoseButton", "Set current pose", setPoseButton_handler, buttonColor=(11, 55, 255), buttonPos=(0, 0.95, 0))
+    #makeButton("playPosesButton", "Play poses", playPosesButton_handler, buttonColor=(11, 55, 255), buttonPos=(0, 0.85, 0))
+    #makeButton("setPoseButton", "Set current pose", setPoseButton_handler, buttonColor=(11, 55, 255), buttonPos=(0, 0.95, 0))
     
 
 #init the 2 text displays 
@@ -495,25 +504,25 @@ def makeText():
 
     scene.add_object(data_text)
 
-def makeGripperText():
+#def makeGripperText():
 
 
-    gripper_text = Text(
-        object_id="gripper_text",
-        text= "Gripper: ",
-        align="center",
-        font="mozillavr", 
-        position=(0, 0.9, 0),
-        scale=(0.2,0.2,0.2),
-        color=(100,255,255),
-        parent = MyCobotPi_J0
-    )
+    #gripper_text = Text(
+        #object_id="gripper_text",
+        #text= "Gripper: ",
+        #align="center",
+        #font="mozillavr", 
+        #position=(0, 0.9, 0),
+        #scale=(0.2,0.2,0.2),
+        #color=(100,255,255),
+        #parent = MyCobotPi_J0
+    #)
 
-    scene.add_object(gripper_text)
+    #scene.add_object(gripper_text)
     
 
  
-@scene.run_forever(interval_ms=1000)
+@scene.run_forever(interval_ms=500)
 # updating data text display and gripper text display ever second
 
 def updateData():
@@ -524,55 +533,55 @@ def updateData():
 
 
     ######
+    #gripper stuff
+    #gripperValue = myCobot.get_gripper_value()
 
-    gripperValue = myCobot.get_gripper_value()
+    #grippertext = ""
 
-    grippertext = ""
+    #if gripperValue <50:
+    #    grippertext = "Closed"
+    #if gripperValue >= 50:
+    #    grippertext = "Open"
 
-    if gripperValue <50:
-        grippertext = "Closed"
-    if gripperValue >= 50:
-        grippertext = "Open"
-
-    gripper_text.data.text = "Gripper: " + grippertext
-
-
-    scene.update_object(data_text)
-    scene.update_object(gripper_text)
+    #gripper_text.data.text = "Gripper: " + grippertext
 
 
-for event in pygame.event.get():
+    #scene.update_object(data_text)
+    #scene.update_object(gripper_text)
 
-    currAngles = myCobot.get_angles()
+#game controller
+#for event in pygame.event.get():
 
-    if event.type == JOYBUTTONDOWN:
-        print(event)
-        if event.button == 6:
-            myCobot.set_gripper_value(99, 100)
-        if event.button == 7:
-            myCobot.set_gripper_value(1, 100)          
+    #currAngles = myCobot.get_angles()
+
+    #if event.type == JOYBUTTONDOWN:
+        #print(event)
+        #if event.button == 6:
+            #myCobot.set_gripper_value(99, 100)
+        #if event.button == 7:
+            #myCobot.set_gripper_value(1, 100)          
         
-    if event.type == JOYAXISMOTION:
-        print(event)
+    #if event.type == JOYAXISMOTION:
+        #print(event)
 
         #left joystick left/right
-        if event.axis == 0:
-            if event.value > 0: #right
-                currAngles[0] = currAngles[0]+10
-            else: #left
-                currAngles[0] = currAngles[0]-10
+        #if event.axis == 0:
+            #if event.value > 0: #right
+                #currAngles[0] = currAngles[0]+10
+            #else: #left
+                #currAngles[0] = currAngles[0]-10
 
         #right joystick up/down
-        if event.axis == 3:
-            if event.value > 0: #down
-                currAngles[1] = currAngles[1]-10
-            else: #up
-                currAngles[1] = currAngles[1]+10
+        #if event.axis == 3:
+            #if event.value > 0: #down
+                #currAngles[1] = currAngles[1]-10
+            #else: #up
+                #currAngles[1] = currAngles[1]+10
        
-    rotateMyCobot(currAngles)
+    #rotateMyCobot(currAngles)
 
-    if event.type == QUIT:
-        pygame.quit()
+    #if event.type == QUIT:
+        #pygame.quit()
 
 
     
