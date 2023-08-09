@@ -35,8 +35,8 @@ scene = Scene(host="arenaxr.org", namespace = "zhilu", scene="arena")
 
 #------MAKE ROBOT ARM------#
 AprilTag = Box(
-    object_id = "base",
-    position = (-2.79, 1.688, -0.176),
+    object_id = "[SpotAR] Cobot 100",
+    position = (-1.906, 0.854, -1.820),
     rotation = (0,90,0),
     scale = (0.15,0.15,0.06),
     persist = True
